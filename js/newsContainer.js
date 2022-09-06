@@ -25,10 +25,20 @@ const loadCategoriesData = (newId) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayCategroyDetails(data.data))
+
+    spinner(true)
 }
 
 const displayCategroyDetails = (categriesDetails) => {
+
     const newBlogContainers = document.getElementById('news-blog-container')
+    if (categriesDetails.length === 0) {
+        spinner(false)
+        newBlogContainers.innerHTML = `
+        <h1 class="text-center text-secondary ">No Data Found</h1>
+        `
+        return;
+    }
     newBlogContainers.innerHTML = ``
     categriesDetails.forEach(category => {
         console.log(category)
@@ -62,7 +72,9 @@ const displayCategroyDetails = (categriesDetails) => {
                         <i class="fa-regular fa-star"></i>
                     </div>
                     <div class="col-3 text-center">
-                        <button class="btn btn-primary">Show Details <iclass="fa-solid fa-arrow-right-long"></i>
+
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-arrow-right-long"></i>
                         </button>
                     </div>
                 </div>
@@ -70,13 +82,20 @@ const displayCategroyDetails = (categriesDetails) => {
         </div>
         
         `
-
         newBlogContainers.appendChild(blogDiv)
-
+        spinner(false)
     })
 
+}
 
-
+const spinner = (isloading) => {
+    const spinner = document.getElementById('loader')
+    if (isloading) {
+        spinner.classList.remove('d-none')
+    }
+    else {
+        spinner.classList.add('d-none')
+    }
 }
 
 
