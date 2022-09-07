@@ -73,7 +73,7 @@ const displayCategroyDetails = (categriesDetails) => {
                     </div>
                     <div class="col-3 text-center">
 
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="ModalDetails('${category._id}')" >
                             <i class="fa-solid fa-arrow-right-long"></i>
                         </button>
                     </div>
@@ -88,6 +88,7 @@ const displayCategroyDetails = (categriesDetails) => {
 
 }
 
+// spinner section 
 const spinner = (isloading) => {
     const spinner = document.getElementById('loader')
     if (isloading) {
@@ -98,5 +99,14 @@ const spinner = (isloading) => {
     }
 }
 
+//modal section 
+const ModalDetails = (News_id) => {
+    const url = `https://openapi.programming-hero.com/api/news/${News_id}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => showModalDetails(data.data))
+}
+const showModalDetails = (data) => {
 
+}
 newsCategoryContainer()
