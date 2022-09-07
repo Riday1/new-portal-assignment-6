@@ -48,6 +48,10 @@ const displayCategroyDetails = (categriesDetails) => {
     }
 
     newsBlogContainers.innerHTML = ``
+    //sort categories items based on view
+    categriesDetails.sort((firstItem, secondItem) => secondItem.total_view - firstItem.total_view);
+
+    //display each element of the arrray
     categriesDetails.forEach(category => {
         console.log(category)
         const blogDiv = document.createElement('div')
@@ -60,33 +64,33 @@ const displayCategroyDetails = (categriesDetails) => {
             <div class="col-8 ps-2 ">
                 <h2>${category.title}</h2>
                 <p class = "py-5 text-secondary">${category.details.length >= 600 ? category.details.slice(0, 600) + '...' : category.details}</p >
-    <div class="d-flex justify-content-between           align-items-center ">
-        <div class="col-3 d-flex">
-            <img class="w-25  rounded-circle" src="${category.author.img}" alt="">
-                <div class="ps-2">
-                    <h5>${category.author.name ? category.author.name : 'no data available'}</h5>
-                    <p class="text-secondary">${category.author.published_date.slice(0, 10)}</p>
+            <div class="d-flex justify-content-between           align-items-center ">
+                <div class="col-3 d-flex">
+                    <img class="w-25  rounded-circle" src="${category.author.img}" alt="">
+                        <div class="ps-2">
+                            <h5>${category.author.name ? category.author.name : 'no data available'}</h5>
+                            <p class="text-secondary">${category.author.published_date.slice(0, 10)}</p>
+                        </div>
                 </div>
-        </div>
-        <div class="col-3 text-center" >
-            <i class="fa-regular fa-eye"></i>
-            <span>${category.total_view ? category.total_view : 'no data avaiable'}</span>
-        </div>
-        <div class="col-3 fs-4 text-center d-sm-none">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-        </div>
-        <div class="col-3 text-center">
+                <div class="col-3 text-center" >
+                    <i class="fa-regular fa-eye"></i>
+                    <span>${category.total_view ? category.total_view : 'no data avaiable'}</span>
+                </div>
+                <div class="col-3 fs-4 text-center d-sm-none">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="col-3 text-center">
 
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="ModalDetails('${category._id}')" >
-                <i class="fa-solid fa-arrow-right-long"></i>
-            </button>
-        </div>
-    </div>
-            </div >
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="ModalDetails('${category._id}')" >
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </div>
+            
         </div >
 
     `
@@ -131,4 +135,4 @@ const showModalDetails = (data) => {
     })
 }
 loadCategoriesData('8')
-newsCategoryContainer('')
+newsCategoryContainer()
