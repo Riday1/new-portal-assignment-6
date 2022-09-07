@@ -51,7 +51,7 @@ const displayCategroyDetails = (categriesDetails) => {
     categriesDetails.forEach(category => {
         console.log(category)
         const blogDiv = document.createElement('div')
-        blogDiv.classList.add('mt-3')
+        blogDiv.classList.add('mt-4')
         blogDiv.innerHTML = `
         <div class="d-flex justify-content-center align-items-center  border rounded-4 p-3 flex-column flex-md-row bg-white shadow-sm">
             <div class="col-4 ">
@@ -60,8 +60,8 @@ const displayCategroyDetails = (categriesDetails) => {
             <div class="col-8 ps-2 ">
                 <h2>${category.title}</h2>
                 <p class = "py-5 text-secondary">${category.details.length >= 600 ? category.details.slice(0, 600) + '...' : category.details}</p >
-    <div class="d-flex justify-content-between           align-items-center">
-        <div class="col-3 d-flex ">
+    <div class="d-flex justify-content-between           align-items-center ">
+        <div class="col-3 d-flex">
             <img class="w-25  rounded-circle" src="${category.author.img}" alt="">
                 <div class="ps-2">
                     <h5>${category.author.name ? category.author.name : 'no data available'}</h5>
@@ -72,7 +72,7 @@ const displayCategroyDetails = (categriesDetails) => {
             <i class="fa-regular fa-eye"></i>
             <span>${category.total_view ? category.total_view : 'no data avaiable'}</span>
         </div>
-        <div class="col-3 fs-4 text-center">
+        <div class="col-3 fs-4 text-center d-sm-none">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-regular fa-star"></i>
@@ -116,16 +116,16 @@ const ModalDetails = (News_id) => {
 }
 const showModalDetails = (data) => {
     const modalDetails = document.getElementById('modal-body')
-
+    modalDetails.innerHTML = ''
     data.forEach(detail => {
         const modalDiv = document.createElement('div')
         modalDiv.innerHTML = `
         <h3>Title - ${detail.title}</h3>
-        <img src = "${detail.thumbnail_url}">
+        <div class="text-center"><img src = "${detail.thumbnail_url}" ></div>
         <h5>Author - ${detail.author.name ? detail.author.name : 'no data is found'} , Date - ${detail.author.published_date ? detail.author.published_date : 'no data is found'}</h5>
-        <p>Details -${detail.details} </p>
+        <p>Details -${detail.details.slice(0, 800)} </p>
         
-        <p class ="fw-bold">View - ${detail.total_view}</p>
+        <p class ="fw-bold">View - ${detail.total_view ? detail.total_view : 'no data found'}</p>
         `
         modalDetails.appendChild(modalDiv)
     })
