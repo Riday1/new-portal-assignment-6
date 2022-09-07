@@ -107,6 +107,13 @@ const ModalDetails = (News_id) => {
         .then(data => showModalDetails(data.data))
 }
 const showModalDetails = (data) => {
-
+    const modalDetails = document.getElementById('modal-body')
+    
+    data.forEach(detail => {
+        const modalDiv = document.createElement('div')
+        modalDiv.innerHTML=`
+        
+        `
+    })
 }
 newsCategoryContainer()
