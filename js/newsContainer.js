@@ -18,7 +18,7 @@ const displayNewCategory = (newsCategories) => {
     });
 
 }
-
+// added an event handler into details button
 const loadCategoriesData = (newId) => {
     const url = `https://openapi.programming-hero.com/api/news/category/0${newId}`
 
@@ -29,17 +29,25 @@ const loadCategoriesData = (newId) => {
     spinner(true)
 }
 
+// news catagories details info 
 const displayCategroyDetails = (categriesDetails) => {
 
-    const newBlogContainers = document.getElementById('news-blog-container')
-    if (categriesDetails.length === 0) {
-        spinner(false)
-        newBlogContainers.innerHTML = `
-        <h1 class="text-center text-secondary ">No Data Found</h1>
+
+
+    const newsBlogContainers = document.getElementById('news-blog-container')
+    const itemsNumber = document.getElementById('items-number-container')
+    if (true) {
+        itemsNumber.innerHTML = `
+        <h5 >${categriesDetails.length} items found from this category </h5>
         `
-        return;
+        if (categriesDetails.length === 0) {
+            spinner(false);
+            newsBlogContainers.innerHTML = ''
+            return;
+        }
     }
-    newBlogContainers.innerHTML = ``
+
+    newsBlogContainers.innerHTML = ``
     categriesDetails.forEach(category => {
         console.log(category)
         const blogDiv = document.createElement('div')
@@ -82,7 +90,7 @@ const displayCategroyDetails = (categriesDetails) => {
         </div>
         
         `
-        newBlogContainers.appendChild(blogDiv)
+        newsBlogContainers.appendChild(blogDiv)
         spinner(false)
     })
 
