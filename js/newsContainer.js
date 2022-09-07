@@ -112,12 +112,15 @@ const showModalDetails = (data) => {
     data.forEach(detail => {
         const modalDiv = document.createElement('div')
         modalDiv.innerHTML = `
-        <h2>Title - ${detail.title}</h2>
+        <h3>Title - ${detail.title}</h3>
+        <img src = "${detail.thumbnail_url}">
         <h5>Author - ${detail.author.name ? detail.author.name : 'no data is found'} , Date - ${detail.author.published_date ? detail.author.published_date : 'no data is found'}</h5>
         <p>Details -${detail.details} </p>
+        
         <p class ="fw-bold">View - ${detail.total_view}</p>
         `
         modalDetails.appendChild(modalDiv)
     })
 }
-newsCategoryContainer()
+loadCategoriesData('8')
+newsCategoryContainer('')
