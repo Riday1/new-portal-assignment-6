@@ -108,12 +108,16 @@ const ModalDetails = (News_id) => {
 }
 const showModalDetails = (data) => {
     const modalDetails = document.getElementById('modal-body')
-    
+
     data.forEach(detail => {
         const modalDiv = document.createElement('div')
-        modalDiv.innerHTML=`
-        
+        modalDiv.innerHTML = `
+        <h2>Title - ${detail.title}</h2>
+        <h5>Author - ${detail.author.name ? detail.author.name : 'no data is found'} , Date - ${detail.author.published_date ? detail.author.published_date : 'no data is found'}</h5>
+        <p>Details -${detail.details} </p>
+        <p class ="fw-bold">View - ${detail.total_view}</p>
         `
+        modalDetails.appendChild(modalDiv)
     })
 }
 newsCategoryContainer()
