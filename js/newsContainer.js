@@ -59,13 +59,13 @@ const displayCategroyDetails = (categriesDetails) => {
             </div>
             <div class="col-8 ps-2 ">
                 <h2>${category.title}</h2>
-                <p>${category.details.slice(0, 600)}</p>
+                <p class = "py-5 text-secondary">${category.details.slice(0, 600)}</p>
                 <div class="d-flex justify-content-between           align-items-center">
                     <div class="col-3 d-flex ">
                         <img class="w-25  rounded-circle" src="${category.author.img}" alt="">
                         <div class="ps-2">
                             <h5>${category.author.name ? category.author.name : 'no data available'}</h5>
-                            <p>${category.author.published_date}</p>
+                            <p class = "text-secondary">${category.author.published_date.slice(0, 10)}</p>
                         </div>
                     </div>
                     <div class="col-3 text-center" >
